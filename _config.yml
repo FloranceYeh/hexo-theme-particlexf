@@ -1,12 +1,12 @@
 # ParticleX Configuration
 # https://github.com/theme-particlex/hexo-theme-particlex
 
-# Avatar image
+# Avatar image (place file under site source/images/)
 avatar: /images/avatar.jpg
 
 # Home page background image
 background:
-    - /images/background_s.jpg
+    - /images/background.jpg
 
 # Loading image
 loading: /images/loading.gif
@@ -19,7 +19,7 @@ colors:
     - "#5a9a8a"
     - "#c48a82"
 
-# ParticleX theme icon is adopts the Font Awesome 6
+# ParticleX theme icon uses Font Awesome 6
 # https://fontawesome.com
 
 # Main menu navigation
@@ -53,21 +53,17 @@ menu:
 card:
     enable: true
     description: |
-        It's Florance!
-        It's Florance's Blog!
+        Your name here.
+        Your blog subtitle.
     iconLinks:
         Github:
             name: github
             theme: brands
-            link: https://github.com/FloranceYeh
+            link: https://github.com/YOUR_GITHUB_USERNAME
         Email:
             name: envelope
             theme: solid
-            link: mailto:Florance_Sunrise@outlook.com
-        Email2:
-            name: envelope
-            theme: regular
-            link: mailto:Florance_Yeh@outlook.com
+            link: mailto:you@example.com
     friendLinks:
         Home: /
         About: /about
@@ -76,12 +72,9 @@ card:
         Tags: /tags
         Links: /links
 
-        
-
 # Footer info
 footer:
     since: 2025
-    # Customize the server domain name ICP
     ICP:
         enable: false
         code:
@@ -114,9 +107,8 @@ math:
 # mermaid chart
 mermaid:
     enable: true
-    version: "7.1.2" 
-    options:  # find more api options from https://github.com/knsv/mermaid/blob/master/src/mermaidAPI.js
-    #startOnload: true  // default true
+    version: "7.1.2"
+    options:
 
 # Image preview
 preview:
@@ -151,38 +143,38 @@ giscus:
 # https://github.com/gitalk/gitalk
 gitalk:
     enable: false
-    clientID: # Default ClientID
-    clientSecret: # Default ClientSecret
-    repo: # The name of repository of store comments
-    owner: # GitHub repo owner
-    admin: # GitHub repo owner and collaborators, only these guys can initialize github issues
-    language: # en, zh-CN, zh-TW, es-ES, fr, ru, de, pl and ko are currently available
-    proxy: # CORS proxy
+    clientID:
+    clientSecret:
+    repo:
+    owner:
+    admin:
+    language:
+    proxy:
 
 # Waline
 # https://github.com/walinejs/waline
 waline:
-    enable: true
-    serverURL: https://blogcomments.florance.top/ # Waline server address url, you should set this to your own link
-    locale: # Locale: https://waline.js.org/guide/client/i18n.html#locale-option
-    commentCount: true # If false, comment count will only be displayed in post page, not in home page
-    pageview: false # Pageviews count, Note: You should not enable both `waline.pageview` and `leancloud_visitors`
-    # Actual selector is set in layout/comment.ejs (follows data-theme)
+    enable: false
+    serverURL: # https://your-waline-server.example
+    locale:
+    commentCount: true
+    pageview: false
+    # dark selector is set in layout/comment.ejs (follows data-theme)
     dark: false
-    emoji: # Custom emoji
+    emoji:
         - https://unpkg.com/@waline/emojis@1.2.0/qq
         - https://unpkg.com/@waline/emojis@1.2.0/tieba
         - https://unpkg.com/@waline/emojis@1.2.0/tw-emoji
     search: false
-    meta: # Comment information, valid meta are nick, mail and link
+    meta:
         - nick
         - mail
-    requiredMeta: # Set required meta field, e.g.: [nick] | [nick, mail]
+    requiredMeta:
         - nick
-    lang: zh-CN # Language, available values: en-US, zh-CN, zh-TW, pt-BR, ru-RU, jp-JP
-    wordLimit: 0 # Word limit, no limit when setting to 0
-    login: enable # Whether enable login, can choose from 'enable', 'disable' and 'force'
-    pageSize: 10 # Comment per page
+    lang: zh-CN
+    wordLimit: 0
+    login: enable
+    pageSize: 10
 
 # Twikoo
 # https://github.com/imaegoo/twikoo
