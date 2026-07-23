@@ -1,3 +1,11 @@
+<%
+    var hasComments = page.comments && (
+        theme.gitalk.enable ||
+        theme.giscus.enable ||
+        theme.waline.enable ||
+        theme.twikoo.enable
+    );
+%>
 <% if (page.toc !== false && toc(page.content)) { %>
 <aside class="toc-sidebar" id="toc-sidebar" aria-label="Table of contents">
     <div class="toc-panel" id="toc-panel">
@@ -16,8 +24,8 @@
             <a href="javascript:;" class="toc-btn" id="toc-btn-top" title="回到顶部">
                 <i class="fa-solid fa-arrow-up"></i> 顶部
             </a>
-            <a href="#comment" class="toc-btn" id="toc-btn-comment" title="查看评论">
-                <i class="fa-solid fa-comments"></i> 评论
+            <a href="<%= hasComments ? '#comment' : '#footer' %>" class="toc-btn" id="toc-btn-comment" title="<%= hasComments ? '查看评论' : '前往底部' %>">
+                <i class="fa-solid <%= hasComments ? 'fa-comments' : 'fa-arrow-down' %>"></i> <%= hasComments ? '评论' : '底部' %>
             </a>
         </div>
     </div>
