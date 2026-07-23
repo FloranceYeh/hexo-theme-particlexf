@@ -1,5 +1,5 @@
 # ParticleXF Configuration
-# https://github.com/theme-particlexf/hexo-theme-particlexf
+# https://github.com/FloranceYeh/hexo-theme-particlexf
 
 # Avatar image (place file under site source/images/)
 avatar: /images/avatar.jpg
@@ -44,10 +44,6 @@ menu:
         name: tags
         theme: solid
         link: /tags
-    Links:
-        name: link
-        theme: solid
-        link: /links
 
 # Side info card
 card:
@@ -67,10 +63,6 @@ card:
     friendLinks:
         Home: /
         About: /about
-        Archives: /archives
-        Categories: /categories
-        Tags: /tags
-        Links: /links
 
 # Footer info
 footer:
@@ -121,6 +113,10 @@ crypto:
 # Search
 search:
     enable: true
+
+# Seed changer
+seedChanger:
+    enable: false
 
 # giscus
 # https://github.com/giscus/giscus

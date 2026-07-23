@@ -9,6 +9,7 @@
             <span>&ensp;<%= key %></span>
         </a>
         <% }); %>
+        <% if (theme.seedChanger && theme.seedChanger.enable) { %>
         <span class="seed-container">
             <span class="seed-text">SEED</span>
             <span class="expandable-form">
@@ -17,6 +18,7 @@
             </span>
             <span class="seed-changer">CHANGER</span>
         </span>
+        <% } %>
     </nav>
     <nav id="mobile-menu">
         <div class="title" @click="showMenuItems = !showMenuItems">
@@ -35,6 +37,7 @@
                     </div>
                 </a>
                 <% }); %>
+                <% if (theme.seedChanger && theme.seedChanger.enable) { %>
                 <span class="seed-container">
                     <span class="seed-text">SEED</span>
                     <span class="expandable-form">
@@ -43,6 +46,7 @@
                     </span>
                     <span class="seed-changer">CHANGER</span>
                 </span>
+                <% } %>
             </div>
         </transition>
     </nav>
