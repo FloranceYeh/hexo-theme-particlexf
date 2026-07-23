@@ -27,14 +27,35 @@ mixins.highlight = {
             }
             return Math.max(1, parts.length);
         },
+        getCodeLanguage(pre) {
+            const code = pre.querySelector("code");
+            const classNames = [
+                ...(code ? code.classList : []),
+                ...pre.classList,
+            ];
+            const markedLanguage = classNames.find((name) =>
+                name.startsWith("language-")
+            );
+
+            if (markedLanguage) {
+                return markedLanguage.slice("language-".length) || "plaintext";
+            }
+
+            return (
+                classNames.find(
+                    (name) =>
+                        name !== "highlight" &&
+                        name !== "code-block" &&
+                        !name.startsWith("is-")
+                ) || "plaintext"
+            );
+        },
         highlight() {
             const opts = this.getHighlightOptions();
             const codes = document.querySelectorAll("pre");
             for (const i of codes) {
                 const code = i.textContent;
-                const language =
-                    [...i.classList, ...(i.firstChild ? i.firstChild.classList : [])][0] ||
-                    "plaintext";
+                const language = this.getCodeLanguage(i);
                 let highlighted;
                 try {
                     highlighted = hljs.highlight(code, { language }).value;

@@ -28,12 +28,14 @@ git clone https://github.com/FloranceYeh/hexo-theme-particlexf themes/particlexf
 theme: particlexf
 ```
 
-### 方式二：作为子模块
+### 方式二：作为子模块（推荐）
 
 ```bash
 cd your-hexo-site
 git submodule add https://github.com/FloranceYeh/hexo-theme-particlexf themes/particlexf
 ```
+
+也记得在 `_config.yml` 中启用主题。
 
 ### 建议的站点依赖
 
@@ -51,14 +53,11 @@ npm install hexo-server hexo-deployer-git
 
 如果你在使用主题自带的 Highlight.js，建议关闭 Hexo 自带高亮。
 
-```yaml
-highlight:
-  enable: false
-prismjs:
-  enable: false
-```
+把 `_config.yml` 中的 `syntax_highlighter` 配置改为空值即可。
 
-如果你使用的是 Hexo 7 及以上版本，也可以按官方方式把 `syntax_highlighter` 关掉。
+```yaml
+syntax_highlighter:
+```
 
 ### 禁用自动归档页
 
@@ -121,6 +120,9 @@ preview:
 
 search:
   enable: true
+
+seedChanger:
+    enable: false
 ```
 
 ### 评论配置
