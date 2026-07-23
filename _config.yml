@@ -1,5 +1,5 @@
-# ParticleX Configuration
-# https://github.com/theme-particlex/hexo-theme-particlex
+# ParticleXF Configuration
+# https://github.com/theme-particlexf/hexo-theme-particlexf
 
 # Avatar image (place file under site source/images/)
 avatar: /images/avatar.jpg
@@ -19,7 +19,7 @@ colors:
     - "#5a9a8a"
     - "#c48a82"
 
-# ParticleX theme icon uses Font Awesome 6
+# ParticleXF theme icon uses Font Awesome 6
 # https://fontawesome.com
 
 # Main menu navigation

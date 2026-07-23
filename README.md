@@ -1,58 +1,108 @@
-# hexo-theme-particlex
+# ParticleXF
 
-基于 [ParticleX](https://github.com/theme-particlex/hexo-theme-particlex) 的 Hexo 主题分支，包含明暗双主题、星空背景、TOC 抽屉、代码折叠/换行、Note 提示框等定制。
+[ParticleX](https://github.com/theme-particlex/hexo-theme-particlex) 的 Hexo 主题分支，基于上游主题做了更偏个人博客的定制：双主题、星空背景、TOC 抽屉、代码折叠/换行、数学公式、Mermaid、搜索和多种评论方案等。
 
-## 功能概览
+## 特性
 
-- **柔和深色 / 暖浅色** 双主题（CSS 变量，非反色滤镜）
-- 顶栏主题切换，`localStorage` 记忆
-- 动态星空背景（浅色模式为淡色星云）
+- 柔和深色 / 暖浅色双主题，使用 CSS 变量切换
+- 顶栏主题切换并记忆用户选择
+- 动态星空背景，浅色模式下显示更轻量的背景效果
 - 文章 TOC：滚动高亮、平滑跳转、移动端抽屉
-- 代码块：明暗双高亮、自动换行、可配置折叠
-- Waline 评论颜色跟随主题
-- `{% note %}` 多样式提示框（主题 `scripts/note.js`）
+- 代码块：Highlight.js 高亮、自动换行、长代码可折叠
+- 数学公式、Mermaid 图表、图片预览、文章加密、站内搜索
+- 支持 giscus、Gitalk、Waline、Twikoo
+- `{% note %}` 提示框标签
 
 ## 安装
 
-### 方式一：Git 子模块 / clone 到 themes
+### 方式一：直接克隆到主题目录
 
 ```bash
 cd your-hexo-site
-git clone <你的主题仓库地址> themes/particlex
+git clone https://github.com/FloranceYeh/hexo-theme-particlexf themes/particlexf
 ```
 
-在站点根目录 `_config.yml` 中设置：
+然后在站点根目录的 `_config.yml` 中启用主题：
 
 ```yaml
-theme: particlex
+theme: particlexf
 ```
 
 ### 方式二：作为子模块
 
 ```bash
-git submodule add <你的主题仓库地址> themes/particlex
+cd your-hexo-site
+git submodule add https://github.com/FloranceYeh/hexo-theme-particlexf themes/particlexf
 ```
 
-### 站点依赖建议
+### 建议的站点依赖
 
 ```bash
 npm install hexo-server hexo-deployer-git
-# 可选：mermaid / 评论等按需安装
 ```
 
-复制并编辑主题配置：
+如果你会用到评论、Mermaid 或加密功能，再按需安装对应服务端依赖。
 
-```bash
-# 主题默认配置在 themes/particlex/_config.yml
-# 按需修改 avatar、menu、card、waline 等
-```
+## Hexo 兼容设置
 
-把站点静态资源放到 `source/images/`（如 `avatar.jpg`、`background_s.jpg`、`loading.gif`），与 `_config.yml` 中路径一致。
+为了避免 Hexo 自带能力和主题功能冲突，建议顺手检查下面几项：
 
-## 配置摘录
+### 关闭自带代码高亮
+
+如果你在使用主题自带的 Highlight.js，建议关闭 Hexo 自带高亮。
 
 ```yaml
-# themes/particlex/_config.yml
+highlight:
+  enable: false
+prismjs:
+  enable: false
+```
+
+如果你使用的是 Hexo 7 及以上版本，也可以按官方方式把 `syntax_highlighter` 关掉。
+
+### 禁用自动归档页
+
+如果你不需要 Hexo 自动生成年度 / 月度 / 日度归档，建议关闭它们，避免和主题的归档页体验重复。
+
+```yaml
+archive_generator:
+  enabled: true
+  per_page: 0
+  yearly: false
+  monthly: false
+  daily: false
+```
+
+修改后建议执行一次 `hexo clean`。
+
+## 主题配置
+
+主题默认配置位于 [_config.yml](_config.yml)。常用项如下：
+
+```yaml
+avatar: /images/avatar.jpg
+
+background:
+  - /images/background.jpg
+
+loading: /images/loading.gif
+
+menu:
+  Home:
+    name: house
+    theme: solid
+    link: /
+  About:
+    name: id-card
+    theme: solid
+    link: /about
+
+card:
+  enable: true
+  description: |
+    Your name here.
+    Your blog subtitle.
+
 highlight:
   enable: true
   wrap: true
@@ -60,11 +110,39 @@ highlight:
     enable: true
     lines: 20
 
-waline:
+math:
   enable: true
-  serverURL: https://your-waline-server/
-  # dark 选择器在 layout/comment.ejs 中跟随 data-theme
+
+mermaid:
+  enable: true
+
+preview:
+  enable: true
+
+search:
+  enable: true
 ```
+
+### 评论配置
+
+主题内置了多种评论适配，按需开启即可：
+
+```yaml
+giscus:
+  enable: false
+
+gitalk:
+  enable: false
+
+waline:
+  enable: false
+  serverURL: https://your-waline-server.example
+
+twikoo:
+  enable: false
+```
+
+`layout/comment.ejs` 会根据主题配置加载对应的评论脚本。
 
 ## Note 标签
 
@@ -82,15 +160,15 @@ waline:
 {% endnote %}
 ```
 
-类型：`note` | `info` | `tip` | `success` | `warning` | `danger` | `quote`
+支持的类型包括：`note`、`info`、`tip`、`success`、`warning`、`danger`、`quote`。
 
 ## 目录结构
 
-```
-hexo-theme-particlex/
-├── _config.yml          # 主题默认配置
-├── layout/              # EJS 模板
-├── scripts/             # Hexo 标签等（note.js）
+```text
+hexo-theme-particlexf/
+├── _config.yml
+├── layout/
+├── scripts/
 ├── source/
 │   ├── css/main.css
 │   └── js/
@@ -99,19 +177,21 @@ hexo-theme-particlex/
 
 ## 开发
 
-在博客站点中：
+在博客站点目录中执行：
 
 ```bash
 hexo clean && hexo server
 ```
 
-修改主题文件后刷新即可；改配置后建议 `hexo clean` 再生成。
+修改主题文件后刷新页面即可；修改配置后建议先清理缓存再重新生成。
 
 ## 许可证
 
-MIT（与上游 ParticleX 用法保持一致时请自行核对上游许可声明）。
+MIT。
 
 ## 致谢
 
 - [hexo-theme-particlex](https://github.com/theme-particlex/hexo-theme-particlex)
-- Font Awesome、Highlight.js、Waline 等
+- [Font Awesome](https://fontawesome.com)
+- [Highlight.js](https://highlightjs.org)
+- [Waline](https://github.com/walinejs/waline)

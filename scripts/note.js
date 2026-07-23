@@ -1,5 +1,5 @@
 /**
- * Note / callout tag (ParticleX theme).
+ * Note / callout tag (ParticleXF theme).
  *
  * Usage:
  *   {% note %}Default note{% endnote %}

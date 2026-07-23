@@ -1,11 +1,11 @@
 {
-  "name": "hexo-theme-particlex",
+  "name": "hexo-theme-particlexf",
   "version": "1.0.0",
-  "description": "ParticleX Hexo theme fork with soft dual themes, TOC drawer, code collapse, and note callouts",
+  "description": "ParticleXF Hexo theme fork with soft dual themes, TOC drawer, code collapse, and note callouts",
   "keywords": [
     "hexo",
     "theme",
-    "particlex",
+    "particlexf",
     "blog"
   ],
   "license": "MIT",
