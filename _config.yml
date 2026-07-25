@@ -114,9 +114,11 @@ crypto:
 search:
     enable: true
 
-# Seed changer
-seedChanger:
-    enable: false
+# Stellars Background
+stellars:
+    enable: true
+    seedChanger:
+        enable: false
 
 # giscus
 # https://github.com/giscus/giscus

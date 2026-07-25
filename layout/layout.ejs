@@ -39,7 +39,7 @@
             <div id="loading" v-show="loading">
                 <div id="loading-circle">
                     <h2>LOADING</h2>
-                    <p>如果你不会魔法 这可能会有些慢</p>
+                    <p>页面加载中...</p>
                     <img src="<%- url_for(theme.loading) %>" />
                 </div>
             </div>
@@ -58,7 +58,6 @@
         <% } %>
     </div>
     <script src="<%- url_for("/js/main.js") %>"></script>
-    <script src="<%- url_for("/js/stellars.js") %>"></script>
     <script src="<%- url_for("/js/theme.js") %>"></script>
     <% if ((type === "post" || type ==="links") && page.comments) { %>
     <%- partial("comment") %>
