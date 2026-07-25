@@ -59,6 +59,9 @@
     </div>
     <script src="<%- url_for("/js/main.js") %>"></script>
     <script src="<%- url_for("/js/theme.js") %>"></script>
+    <% if (theme.stellars.enable) { %>
+    <script src="<%- url_for("/js/lib/stellars.js") %>"></script>
+    <% } %>
     <% if ((type === "post" || type ==="links") && page.comments) { %>
     <%- partial("comment") %>
     <% } %>
