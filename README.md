@@ -121,8 +121,10 @@ preview:
 search:
   enable: true
 
-seedChanger:
-    enable: false
+stellars:
+    enable: true
+    seedChanger:
+        enable: false
 ```
 
 ### 评论配置
