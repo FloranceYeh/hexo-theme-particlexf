@@ -1718,13 +1718,13 @@ ol li {
     .toc-sidebar {
         position: fixed;
         inset: 0;
-        width: auto;
+        width: 100vw;
+        height: 100vh;
+        height: 100dvh;
         top: 0;
+        align-self: auto;
         z-index: 1100;
-        background: rgba(0, 0, 0, 0.45);
-        display: flex;
-        justify-content: flex-end;
-        align-items: stretch;
+        background: transparent;
         opacity: 0;
         visibility: hidden;
         pointer-events: none;
@@ -1736,14 +1736,21 @@ ol li {
         pointer-events: auto;
     }
     .toc-panel {
-        width: min(320px, 88vw);
-        height: 100%;
-        background: var(--bg-page);
-        border-left: 1px solid var(--border);
-        box-shadow: -8px 0 32px var(--shadow);
+        position: absolute;
+        right: 16px;
+        bottom: 82px;
+        width: min(360px, calc(100vw - 32px));
+        max-height: min(70vh, 560px);
+        max-height: min(70dvh, 560px);
+        background: var(--bg-surface-elevated);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        box-shadow: 0 16px 48px var(--shadow);
         padding: 16px;
-        transform: translateX(100%);
-        transition: transform 0.22s ease;
+        box-sizing: border-box;
+        transform: translateY(12px) scale(0.98);
+        transform-origin: right bottom;
+        transition: transform 0.2s ease;
         overflow: hidden;
     }
     .toc-sidebar.is-open .toc-panel {
@@ -1775,7 +1782,7 @@ ol li {
         position: fixed;
         right: 16px;
         bottom: 24px;
-        z-index: 1005;
+        z-index: 1101;
         border: 1px solid var(--border);
         background: var(--bg-surface);
         color: var(--accent);
@@ -1792,12 +1799,9 @@ ol li {
         color: var(--accent-hover);
         transform: translateY(-2px);
     }
-    body.toc-drawer-open {
-        overflow: hidden;
-    }
     body.toc-drawer-open .toc-fab {
-        opacity: 0;
-        pointer-events: none;
+        background: var(--accent-muted);
+        color: var(--on-accent);
     }
 }
 @media (min-width: 1201px) {
