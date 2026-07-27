@@ -278,7 +278,7 @@ twikoo:
 
 - giscus requires `repo`, `repoID`, `category`, and `categoryID`; its remaining data attributes are passed from the matching config keys.
 - Gitalk requires its GitHub OAuth credentials, repository, owner, and admin list. Comma-separate multiple admins.
-- Waline requires `serverURL`; the theme also passes emoji, locale, metadata, login, page-size, and related client options.
+- Waline requires `serverURL`. The theme loads Waline Client 3.15.2 and also passes emoji, locale, metadata, login, page-size, and related client options.
 - Twikoo requires `envID`; `region`, `path`, and `lang` are optional adapter settings.
 
 The TOC's lower shortcut points to comments only when `comments: true` and at least one adapter is enabled; otherwise it points to the footer.
@@ -329,10 +329,3 @@ Edit theme files and refresh the browser. After config changes, run a clean befo
 ## License
 
 MIT.
-
-## Credits
-
-- [hexo-theme-particlex](https://github.com/theme-particlex/hexo-theme-particlex)
-- [Font Awesome](https://fontawesome.com)
-- [Highlight.js](https://highlightjs.org)
-- [Waline](https://github.com/walinejs/waline)

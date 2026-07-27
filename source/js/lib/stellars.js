@@ -84,11 +84,12 @@ function generateStars(width, height) {
 }
 
 function initGalaxy(seed) {
-    const currentSeed = seed || lastSeed || Math.floor(Math.random() * 1e9);
+    const currentSeed = seed ?? lastSeed ?? Math.floor(Math.random() * 1e9);
     lastSeed = currentSeed;
     console.log("Seed:", currentSeed);
-    const input = document.getElementById('seedInput');
-    if (input) input.setAttribute("placeholder", currentSeed);
+    document.querySelectorAll('.seed-input').forEach((input) => {
+        input.setAttribute("placeholder", currentSeed);
+    });
 
     rand = mulberry32(currentSeed);
     phaseX = rand() * Math.PI * 2;
@@ -96,15 +97,22 @@ function initGalaxy(seed) {
     stars = generateStars(window.innerWidth * 1.2, window.innerHeight * 1.2);
 }
 
-window.updateGalaxy = function() {
-    const input = document.getElementById('seedInput');
-    const val = input && input.value ? parseInt(input.value) : null;
+window.updateGalaxy = function(trigger) {
+    const container = trigger && trigger.closest('.seed-container');
+    const input = container
+        ? container.querySelector('.seed-input')
+        : document.querySelector('.seed-input');
+    const parsed = input && input.value ? Number.parseInt(input.value, 10) : null;
+    const val = Number.isFinite(parsed) ? parsed : null;
     initGalaxy(val);
     drawStars(stars);
 }
 
 function applySkyTheme(themeName) {
-    currentThemeName = themeName === 'light' ? 'light' : 'dark';
+    const nextThemeName = themeName === 'light' ? 'light' : 'dark';
+    if (nextThemeName === currentThemeName && stars.length > 0) return;
+
+    currentThemeName = nextThemeName;
     themeConfig = THEMES[currentThemeName];
     starColors = buildWeightedColorArray(themeConfig.colors);
     initGalaxy(lastSeed);
@@ -176,6 +184,5 @@ const themeObserver = new MutationObserver(() => {
 themeObserver.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
 
 resizeCanvas();
-initGalaxy();
 applySkyTheme(getThemeName());
 animate();

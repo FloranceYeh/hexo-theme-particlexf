@@ -34,9 +34,6 @@
                 new CustomEvent("themechange", { detail: { theme: theme } })
             );
         } catch (e) {}
-        if (typeof window.setSkyTheme === "function") {
-            window.setSkyTheme(theme);
-        }
     }
 
     function setTheme(theme) {

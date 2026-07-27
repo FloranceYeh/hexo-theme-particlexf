@@ -280,7 +280,7 @@ twikoo:
 
 - giscus 需要 `repo`、`repoID`、`category`、`categoryID`，其余 data 属性由同名配置传入。
 - Gitalk 需要 GitHub OAuth 凭据、仓库、所有者和管理员列表；多个管理员用逗号分隔。
-- Waline 至少需要 `serverURL`，主题还会传入表情、语言、用户信息字段、登录方式、分页等客户端选项。
+- Waline 至少需要 `serverURL`。主题加载 Waline Client 3.15.2，并传入表情、语言、用户信息字段、登录方式、分页等客户端选项。
 - Twikoo 需要 `envID`，并支持 `region`、`path`、`lang`。
 
 只有当前页面设置了 `comments: true` 且至少启用一个评论适配器时，TOC 底部快捷入口才会指向评论区；否则会指向页脚。
@@ -329,10 +329,3 @@ hexo clean && hexo server
 ## 许可证
 
 MIT。
-
-## 致谢
-
-- [hexo-theme-particlex](https://github.com/theme-particlex/hexo-theme-particlex)
-- [Font Awesome](https://fontawesome.com)
-- [Highlight.js](https://highlightjs.org)
-- [Waline](https://github.com/walinejs/waline)

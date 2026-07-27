@@ -1870,7 +1870,7 @@ summary {
         font-size: 10px;
         height: 20px;
 }
-#seedInput::placeholder {
+.seed-input::placeholder {
     font-size: 10px;
 }
 .expandable-form button {
@@ -1890,12 +1890,12 @@ summary {
     padding: 1rem;
 }
 
-/* Waline follows site theme tokens */
-#waline-container,
-#waline-container .wl-panel,
-#waline-container .wl-editor,
-#waline-container .wl-input,
-#waline-container .wl-card {
+/* Waline 3.x */
+#waline-container {
+    --waline-font-size: 1rem;
+    --waline-white: var(--on-accent);
+    --waline-light-grey: var(--text-secondary);
+    --waline-dark-grey: var(--text-secondary);
     --waline-theme-color: var(--accent);
     --waline-active-color: var(--accent-hover);
     --waline-color: var(--text-primary);
@@ -1906,22 +1906,167 @@ summary {
     --waline-disable-bg-color: var(--bg-surface-elevated);
     --waline-disable-color: var(--text-secondary);
     --waline-code-bg-color: var(--bg-code);
-    --waline-bq-color: var(--text-secondary);
+    --waline-warning-color: var(--danger);
+    --waline-warning-bg-color: rgba(224, 108, 117, 0.12);
+    --waline-bq-color: var(--border);
+    --waline-avatar-size: 3rem;
+    --waline-m-avatar-size: 2.25rem;
+    --waline-user-avatar-size: 2.5rem;
+    --waline-avatar-radius: 50%;
+    --waline-badge-color: var(--accent);
+    --waline-badge-font-size: 0.75em;
     --waline-info-bg-color: var(--bg-surface-elevated);
     --waline-info-color: var(--text-secondary);
+    --waline-info-font-size: 0.7em;
+    --waline-border: 1px solid var(--waline-border-color);
+    --waline-box-shadow: 0 4px 18px var(--shadow);
+
+    min-width: 0;
+    width: 100%;
+    color: var(--text-primary);
 }
 
 #comment {
+    box-sizing: border-box;
+    min-width: 0;
+    width: 100%;
+    max-width: calc(100vw - 48px);
     margin-top: 2rem;
 }
 
-#waline-container {
+#waline-container [data-waline],
+#waline-container .wl-comment {
+    min-width: 0;
+    max-width: 100%;
+}
+
+#waline-container [data-waline] {
+    font-family: var(--font-sans);
+}
+
+#waline-container .wl-panel {
+    box-sizing: border-box;
     background: var(--bg-surface);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 16px 18px 8px;
-    box-shadow: var(--shadow-card);
+    border-radius: 8px;
+}
+
+#waline-container .wl-header {
+    border-bottom-color: var(--border);
+}
+
+#waline-container .wl-header label,
+#waline-container .wl-input,
+#waline-container .wl-editor {
     color: var(--text-primary);
+}
+
+#waline-container .wl-input::placeholder,
+#waline-container .wl-editor::placeholder {
+    color: var(--text-secondary);
+    opacity: 0.8;
+}
+
+#waline-container .wl-editor {
+    min-height: 9rem;
+    line-height: 1.75;
+}
+
+#waline-container .wl-input:focus,
+#waline-container .wl-editor:focus {
+    background: var(--bg-surface-elevated);
+}
+
+#waline-container .wl-btn {
+    border-radius: 6px;
+    transition: border-color 0.2s, background-color 0.2s, color 0.2s;
+}
+
+#waline-container .wl-btn:focus-visible,
+#waline-container .wl-action:focus-visible,
+#waline-container .wl-card button:focus-visible,
+#waline-container .wl-emoji-popup button:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+}
+
+#waline-container .wl-action {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 4px;
+}
+
+#waline-container .wl-action:hover,
+#waline-container .wl-action.active {
+    background: var(--bg-surface-elevated);
+}
+
+#waline-container .wl-emoji-popup,
+#waline-container .wl-gif-popup {
+    box-sizing: border-box;
+    border-radius: 8px;
+}
+
+#waline-container .wl-emoji-popup .wl-tab {
+    border-radius: 0 0 6px 6px;
+}
+
+#waline-container .wl-emoji-popup button {
+    border-radius: 4px;
+}
+
+#waline-container .wl-meta-head {
+    margin-top: 1.5rem;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--border);
+}
+
+#waline-container .wl-count {
+    color: var(--text-heading);
+    font-size: 1.1rem;
+}
+
+#waline-container .wl-sort li {
+    transition: color 0.2s;
+}
+
+#waline-container .wl-card-item {
+    padding-top: 0.875rem;
+    padding-bottom: 0.875rem;
+}
+
+#waline-container .wl-card {
+    border-bottom-color: var(--border);
+}
+
+#waline-container .wl-card .wl-head .wl-nick {
+    color: var(--text-heading);
+}
+
+#waline-container .wl-card .wl-meta > span {
+    border: 1px solid var(--border);
+}
+
+#waline-container .wl-card .wl-content {
+    color: var(--text-primary);
+    line-height: 1.8;
+}
+
+#waline-container .wl-card .wl-content.expand::before {
+    background: linear-gradient(180deg, transparent, var(--waline-bg-color));
+}
+
+#waline-container .wl-card .wl-content.expand::after {
+    background: var(--waline-bg-color);
+    color: var(--text-secondary);
+}
+
+#waline-container .wl-empty,
+#waline-container .wl-power {
+    color: var(--text-secondary);
+}
+
+#waline-container .wl-reaction-list {
+    scrollbar-color: var(--accent-muted) transparent;
 }
 
 #waline-container a {
@@ -1941,4 +2086,57 @@ summary {
 
 #comment > a[href*="blogcomments"]:hover {
     color: var(--accent);
+}
+
+[data-theme="light"] #waline-container {
+    --waline-warning-bg-color: rgba(201, 76, 87, 0.1);
+}
+
+@media (max-width: 580px) {
+    #comment {
+        margin-top: 1.5rem;
+    }
+
+    #waline-container {
+        --waline-font-size: 0.9375rem;
+        --waline-box-shadow: 0 3px 14px var(--shadow);
+    }
+
+    #waline-container .wl-panel {
+        margin-inline: 0;
+    }
+
+    #waline-container .wl-editor {
+        min-height: 7.5rem;
+    }
+
+    #waline-container .wl-footer {
+        gap: 0.5rem;
+    }
+
+    #waline-container .wl-actions,
+    #waline-container .wl-info {
+        flex: 1 1 100%;
+    }
+
+    #waline-container .wl-info {
+        min-width: 0;
+        justify-content: flex-end;
+    }
+
+    #waline-container .wl-emoji-popup,
+    #waline-container .wl-gif-popup {
+        inset-inline-start: 0;
+        width: 100%;
+        max-width: 100%;
+    }
+
+    #waline-container .wl-meta-head {
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+
+    #waline-container .wl-sort {
+        flex-shrink: 0;
+    }
 }

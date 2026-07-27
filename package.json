@@ -14,7 +14,7 @@
     "url": "https://github.com/FloranceYeh/hexo-theme-particlexf"
   },
   "hexo": {
-    "version": ">=6.0.0"
+    "version": "8.1.2"
   },
   "engines": {
     "node": ">=16"
