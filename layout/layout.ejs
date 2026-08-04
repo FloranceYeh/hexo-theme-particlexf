@@ -19,7 +19,7 @@
 <head>
     <meta charset="utf-8" />
     <script>
-    (function(){try{var t=localStorage.getItem("theme");if(t!=="light"&&t!=="dark")t="dark";document.documentElement.setAttribute("data-theme",t);}catch(e){document.documentElement.setAttribute("data-theme","dark");}})();
+    (function(){var t,dt;try{t=localStorage.getItem("theme");dt="<%- theme.theme.default_theme || 'dark' %>"}catch(e){dt="dark"}if(t!=="light"&&t!=="dark")t=dt;document.documentElement.setAttribute("data-theme",t);})();
     </script>
     <title><%= title %></title>
     <meta name="author" content="<%- config.author %>" />

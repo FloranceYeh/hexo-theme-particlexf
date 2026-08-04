@@ -54,10 +54,12 @@
             </div>
         </transition>
     </nav>
+    <% if (theme.theme.toggle) { %>
     <button id="theme-toggle" type="button" aria-label="Switch theme">
         <i class="fa-solid fa-sun theme-icon-sun" aria-hidden="true"></i>
         <i class="fa-solid fa-moon theme-icon-moon" aria-hidden="true"></i>
     </button>
+    <% } %>
 </div>
 <transition name="fade">
     <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>

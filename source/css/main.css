@@ -1,4 +1,11 @@
 :root {
+    --font-size-base: 16px;
+    --line-height-body: 1.85;
+    --font-sans: "Segoe UI", "Noto Sans SC", "Source Han Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+    --font-mono: "Fira Code", ui-monospace, monospace;
+}
+
+:root {
     --bg-page: #1a1f1c;
     --bg-surface: #252b27;
     --bg-surface-elevated: #2c332e;
@@ -14,10 +21,6 @@
     --shadow: rgba(0, 0, 0, 0.25);
     --danger: #e06c75;
     --success: #6bbf8a;
-    --font-size-base: 16px;
-    --line-height-body: 1.85;
-    --font-sans: "Segoe UI", "Noto Sans SC", "Source Han Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
-    --font-mono: "Fira Code", ui-monospace, monospace;
     --shadow-card: 0 4px 24px var(--shadow);
     --menu-bg: rgba(37, 43, 39, 0.92);
     --menu-bg-scrolled: rgba(26, 31, 28, 0.55);
@@ -102,7 +105,7 @@
     color: var(--danger);
 }
 #crypto.failure:focus {
-    box-shadow: 0 0 0 3px rgba(224, 108, 117, 0.3);
+    box-shadow: 0 0 0 3px rgba(var(--danger-rgb, 224, 108, 117), 0.3);
 }
 #crypto.success {
     border-color: var(--success);
@@ -240,7 +243,7 @@
     top: -5vh;
     width: 100vw;
     z-index: -1;
-    mask-image: linear-gradient(to top, transparent, #000 10vh);
+    mask-image: linear-gradient(to top, transparent, var(--text-primary) 10vh);
     mask-size: cover;
 }
 #home-head #home-info .info {
@@ -252,28 +255,28 @@
 }
 #home-head #home-info .loop:nth-child(1) {
     animation: loop1 10s linear infinite;
-    background: #5a8f72;
+    background: var(--loop-bg-1);
     border-radius: 38% 62% 63% 37%/41% 44% 56% 59%;
     opacity: 0.28;
     transform: rotate(30deg);
 }
 #home-head #home-info .loop:nth-child(2) {
     animation: loop2 15s linear infinite;
-    background: #7eb89a;
+    background: var(--loop-bg-2);
     border-radius: 38% 62% 63% 37%/41% 44% 56% 59%;
     opacity: 0.22;
     transform: rotate(60deg);
 }
 #home-head #home-info .loop:nth-child(3) {
     animation: loop3 10s linear infinite;
-    background: #4a6b5c;
+    background: var(--loop-bg-3);
     border-radius: 38% 62% 63% 37%/41% 44% 56% 59%;
     opacity: 0.32;
     transform: rotate(90deg);
 }
 #home-head #home-info .loop:nth-child(4) {
     animation: loop4 15s linear infinite;
-    background: #6a8fb0;
+    background: var(--loop-bg-4);
     border-radius: 38% 62% 63% 37%/41% 44% 56% 59%;
     opacity: 0.2;
     transform: rotate(120deg);
@@ -282,19 +285,19 @@
     margin: 0;
 }
 [data-theme="light"] #home-head #home-info .loop:nth-child(1) {
-    background: #5a8f72;
+    background: var(--loop-bg-1);
     opacity: 0.3;
 }
 [data-theme="light"] #home-head #home-info .loop:nth-child(2) {
-    background: #9dceb4;
+    background: var(--loop-bg-2);
     opacity: 0.28;
 }
 [data-theme="light"] #home-head #home-info .loop:nth-child(3) {
-    background: #c4b8a0;
+    background: var(--loop-bg-3);
     opacity: 0.32;
 }
 [data-theme="light"] #home-head #home-info .loop:nth-child(4) {
-    background: #6a8fb0;
+    background: var(--loop-bg-4);
     opacity: 0.26;
 }
 #home-head #home-info,
@@ -407,7 +410,7 @@
     border: 0;
     border-radius: 16px 0;
     bottom: -5px;
-    box-shadow: 2px 2px 12px 0 rgba(90, 143, 114, 0.35);
+    box-shadow: 2px 2px 12px 0 rgba(var(--accent-muted-rgb, 90, 143, 114), 0.35);
     color: var(--on-accent);
     font-size: 14px;
     font-weight: 600;
@@ -417,7 +420,7 @@
     transition: box-shadow 0.25s ease-out, right 0.25s ease-out;
 }
 #home-posts .post .go-post:hover {
-    box-shadow: -2px -2px 12px 0 rgba(126, 184, 154, 0.35);
+    box-shadow: -2px -2px 12px 0 rgba(var(--accent-rgb, 126, 184, 154), 0.35);
     right: -7px;
 }
 #home-posts .post .post-tags .tag {
@@ -438,7 +441,7 @@
     text-align: center;
 }
 #home-posts .post:hover {
-    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.35);
+    box-shadow: 0 8px 28px rgba(var(--shadow-rgb, 0, 0, 0), 0.35);
     border-color: var(--accent-muted);
     transform: translate(-3px, -3px);
 }
@@ -549,7 +552,7 @@ html {
     padding-right: 56px;
 }
 #menu-curtain {
-    background: #0003;
+    background: rgba(var(--shadow-rgb, 0, 0, 0), 0.2);
     height: 100%;
     left: 0;
     position: fixed;
@@ -724,8 +727,8 @@ html {
 .code-block.is-collapsed .code-content {
     max-height: calc(1.7em * var(--code-collapse-lines, 20) + 1.2rem);
     overflow: hidden;
-    mask-image: linear-gradient(to bottom, #000 62%, transparent 100%);
-    -webkit-mask-image: linear-gradient(to bottom, #000 62%, transparent 100%);
+    mask-image: linear-gradient(to bottom, var(--text-primary) 62%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, var(--text-primary) 62%, transparent 100%);
 }
 .code-block.is-expanded .code-content {
     max-height: none;
@@ -822,7 +825,7 @@ body::-webkit-scrollbar-track {
 .input:focus {
     background: var(--bg-surface-elevated);
     border-color: var(--accent);
-    box-shadow: 0 0 0 3px rgba(126, 184, 154, 0.3);
+    box-shadow: 0 0 0 3px rgba(var(--accent-rgb, 126, 184, 154), 0.3);
     outline: none;
 }
 .input:hover {
@@ -911,7 +914,7 @@ body::-webkit-scrollbar-track {
     border-radius: 100px;
 }
 ::selection {
-    background-color: rgba(126, 184, 154, 0.35);
+    background-color: rgba(var(--accent-rgb, 126, 184, 154), 0.35);
     color: unset;
 }
 a {
@@ -947,7 +950,7 @@ strong {
     line-height: inherit;
 }
 blockquote {
-    background: rgba(90, 143, 114, 0.15);
+    background: rgba(var(--accent-muted-rgb, 90, 143, 114), 0.15);
     border-left: 3px solid var(--accent-muted);
     border-radius: 3px;
     margin: 1em 0;
@@ -958,7 +961,7 @@ blockquote {
 /* Note / callout boxes */
 .note {
     --note-accent: var(--accent);
-    --note-bg: rgba(126, 184, 154, 0.12);
+    --note-bg: rgba(var(--accent-rgb, 126, 184, 154), 0.12);
     margin: 1.25em 0;
     padding: 0.9rem 1rem 0.85rem;
     border-radius: 10px;
@@ -1103,7 +1106,7 @@ iframe {
     border-radius: 10px;
 }
 mark {
-    background: rgba(126, 184, 154, 0.25);
+    background: rgba(var(--accent-rgb, 126, 184, 154), 0.25);
     border-radius: 4px;
     color: unset;
     line-height: inherit;
@@ -1146,10 +1149,10 @@ table:not(.hljs-ln) {
     margin: 15px 0;
 }
 table:not(.hljs-ln) td:nth-child(even) {
-    background: rgba(126, 184, 154, 0.08);
+    background: rgba(var(--accent-rgb, 126, 184, 154), 0.08);
 }
 table:not(.hljs-ln) td:nth-child(odd) {
-    background: rgba(126, 184, 154, 0.04);
+    background: rgba(var(--accent-rgb, 126, 184, 154), 0.04);
 }
 table:not(.hljs-ln) th {
     background: var(--accent-muted);
@@ -1396,7 +1399,7 @@ ol li {
 }
 .card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+    box-shadow: 0 8px 20px var(--shadow-card-hover);
     border-color: var(--accent-muted);
 }
 .card-header {
@@ -1646,7 +1649,7 @@ ol li {
     font-weight: 500;
 }
 .toc-link:hover {
-    background-color: rgba(126, 184, 154, 0.1);
+    background-color: rgba(var(--accent-rgb, 126, 184, 154), 0.1);
 }
 .toc-link:hover .toc-number {
     color: var(--accent-muted);
@@ -1693,7 +1696,7 @@ ol li {
     font-size: 1.05em;
 }
 .toc-link.active {
-    background-color: rgba(126, 184, 154, 0.14);
+    background-color: rgba(var(--accent-rgb, 126, 184, 154), 0.14);
     border-left-color: var(--accent);
 }
 .toc-link.active .toc-number {
@@ -1706,7 +1709,7 @@ ol li {
     font-weight: 600;
 }
 .toc > li > .toc-link.active {
-    background-color: rgba(126, 184, 154, 0.18);
+    background-color: rgba(var(--accent-rgb, 126, 184, 154), 0.18);
 }
 .toc-child .toc-link.active {
     border-left-color: var(--accent-muted);
@@ -1819,12 +1822,12 @@ details {
     position: relative;
     clear: both;
     border-radius: 12px;
-    background-color: rgba(42, 51, 46, 0.6);
+    background-color: var(--details-bg, rgba(42, 51, 46, 0.6));
     padding-left: 1rem;
     padding-right: 1rem;
 }
 details:active {
-    background-color: rgba(90, 143, 114, 0.2);
+    background-color: rgba(var(--accent-muted-rgb, 90, 143, 114), 0.2);
 }
 summary {
     padding: 0.5rem 0.75rem;
@@ -1861,7 +1864,7 @@ summary {
     margin: 0 10px;
 }
 .expandable-form input {
-        background: rgba(0, 0, 0, 0.3);
+        background: rgba(var(--shadow-rgb, 0, 0, 0), 0.3);
         border: none;
         color: var(--text-secondary);
         border-radius: 4px;
@@ -1874,7 +1877,7 @@ summary {
     font-size: 10px;
 }
 .expandable-form button {
-        background: rgba(0, 0, 0, 0.3);
+        background: rgba(var(--shadow-rgb, 0, 0, 0), 0.3);
         border: none;
         margin-left: 5px;
         border-radius: 10px;
@@ -1885,7 +1888,7 @@ summary {
 
 .mermaid {
     color: var(--text-primary);
-    background-color: rgba(126, 184, 154, 0.12);
+    background-color: rgba(var(--accent-rgb, 126, 184, 154), 0.12);
     border-radius: 8px;
     padding: 1rem;
 }
@@ -1907,7 +1910,7 @@ summary {
     --waline-disable-color: var(--text-secondary);
     --waline-code-bg-color: var(--bg-code);
     --waline-warning-color: var(--danger);
-    --waline-warning-bg-color: rgba(224, 108, 117, 0.12);
+    --waline-warning-bg-color: rgba(var(--danger-rgb, 224, 108, 117), 0.12);
     --waline-bq-color: var(--border);
     --waline-avatar-size: 3rem;
     --waline-m-avatar-size: 2.25rem;
@@ -2089,7 +2092,7 @@ summary {
 }
 
 [data-theme="light"] #waline-container {
-    --waline-warning-bg-color: rgba(201, 76, 87, 0.1);
+    --waline-warning-bg-color: rgba(var(--danger-rgb, 201, 76, 87), 0.1);
 }
 
 @media (max-width: 580px) {

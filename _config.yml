@@ -11,8 +11,22 @@ background:
 # Loading image
 loading: /images/loading.gif
 
+# Customize theme
+theme:
+    # toggle is used to enable/disable theme color toggle button in the header
+    toggle: true
+    # Default theme mode: "dark" or "light"
+    default_theme: dark
+    # Enable to override the default accent colors and generate a full palette
+    # overrides: optional per-variable overrides (any CSS variable from main.css)
+    custom_theme_color:
+        enable: true
+        dark_accent: "#3d7a5c"
+        light_accent: "#7eb89a"
+        overrides: {}
+
 # Optional colors for category and tag
-colors:
+tagcolors:
     - "#8f9a5c"
     - "#5a9aa8"
     - "#6a8fb0"
