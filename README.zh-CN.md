@@ -303,6 +303,37 @@ twikoo:
 
 支持的类型包括：`note`、`info`、`tip`、`success`、`warning`、`danger`、`quote`。
 
+## Tabs 标签
+
+创建选项卡内容块：
+
+```markdown
+{% tabs Tab1 @code Tab2 @image Tab3 @gear default:1 %}
+Tab 1 的内容。
+<!-- tabs -->
+Tab 2 的内容。
+<!-- tabs -->
+Tab 3 的内容。
+{% endtabs %}
+```
+
+- 标签名和可选 `@图标名`（Font Awesome）用空格分隔。
+- 添加 `default:N` 指定默认激活的选项卡（从 0 开始）。
+- 省略标签名则只显示图标：`{% tabs @house @gear %}`。
+- 内容块用 `<!-- tabs -->` 分隔。
+
+## Video 标签
+
+嵌入外部视频：
+
+```markdown
+{% video https://www.youtube.com/watch?v=VIDEO_ID %}
+{% video https://www.bilibili.com/video/BVxxxxxxxx %}
+{% video https://player.youku.com/embed/VIDEO_ID %}
+```
+
+自动识别 YouTube、Bilibili、Youku，其他 URL 直接以 iframe 嵌入。
+
 ## 目录结构
 
 ```text

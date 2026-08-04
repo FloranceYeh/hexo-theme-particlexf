@@ -303,6 +303,37 @@ No icon.
 
 Supported types: `note`, `info`, `tip`, `success`, `warning`, `danger`, `quote`.
 
+## Tabs
+
+Create tabbed content blocks:
+
+```markdown
+{% tabs Tab1 @code Tab2 @image Tab3 @gear default:1 %}
+Content for tab 1.
+<!-- tabs -->
+Content for tab 2.
+<!-- tabs -->
+Content for tab 3.
+{% endtabs %}
+```
+
+- Labels and optional `@icon` (Font Awesome) are space-separated.
+- Append `default:N` to set the initially active tab (0-based).
+- Omit labels to use only icons: `{% tabs @house @gear %}`.
+- Tab content is separated by `<!-- tabs -->`.
+
+## Video
+
+Embed external videos:
+
+```markdown
+{% video https://www.youtube.com/watch?v=VIDEO_ID %}
+{% video https://www.bilibili.com/video/BVxxxxxxxx %}
+{% video https://player.youku.com/embed/VIDEO_ID %}
+```
+
+Automatically detects YouTube, Bilibili, and Youku. Falls back to a direct iframe embed for other URLs.
+
 ## Layout
 
 ```
