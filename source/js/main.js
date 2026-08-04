@@ -41,3 +41,17 @@ const app = Vue.createApp({
     },
 });
 app.mount("#layout");
+
+document.addEventListener("click", function (e) {
+    var btn = e.target.closest(".tabs-tab");
+    if (!btn) return;
+    var id = btn.getAttribute("data-tabs-id");
+    var tab = btn.getAttribute("data-tab");
+    var container = document.getElementById(id);
+    if (!container) return;
+    container.querySelectorAll(".tabs-tab").forEach(function (b) { b.classList.remove("active"); });
+    container.querySelectorAll(".tabs-pane").forEach(function (p) { p.classList.remove("active"); });
+    btn.classList.add("active");
+    var pane = container.querySelector('.tabs-pane[data-tab="' + tab + '"]');
+    if (pane) pane.classList.add("active");
+});
