@@ -88,7 +88,9 @@ function initGalaxy(seed) {
     lastSeed = currentSeed;
     console.log("Seed:", currentSeed);
     document.querySelectorAll('.seed-input').forEach((input) => {
-        input.setAttribute("placeholder", currentSeed);
+        input.value = '';
+        input.placeholder = currentSeed;
+        input.setCustomValidity('');
     });
 
     rand = mulberry32(currentSeed);
@@ -97,15 +99,27 @@ function initGalaxy(seed) {
     stars = generateStars(window.innerWidth * 1.2, window.innerHeight * 1.2);
 }
 
-window.updateGalaxy = function(trigger) {
-    const container = trigger && trigger.closest('.seed-container');
-    const input = container
-        ? container.querySelector('.seed-input')
-        : document.querySelector('.seed-input');
-    const parsed = input && input.value ? Number.parseInt(input.value, 10) : null;
-    const val = Number.isFinite(parsed) ? parsed : null;
-    initGalaxy(val);
+window.updateGalaxy = function(event) {
+    if (event && typeof event.preventDefault === 'function') event.preventDefault();
+    const form = event && event.currentTarget && event.currentTarget.matches('.seed-container')
+        ? event.currentTarget
+        : document.querySelector('.seed-container');
+    const input = form && form.querySelector('.seed-input');
+    const raw = input ? input.value.trim() : '';
+    if (raw && !/^[+-]?\d+$/.test(raw)) {
+        input.setCustomValidity('Seed must be a whole number.');
+        input.reportValidity();
+        return false;
+    }
+    const parsed = raw ? Number(raw) : Math.floor(Math.random() * 1e9);
+    if (raw && !Number.isSafeInteger(parsed)) {
+        input.setCustomValidity('Seed must be a safe integer.');
+        input.reportValidity();
+        return false;
+    }
+    initGalaxy(parsed);
     drawStars(stars);
+    return false;
 }
 
 function applySkyTheme(themeName) {

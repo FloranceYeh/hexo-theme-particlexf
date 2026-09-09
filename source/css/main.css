@@ -1262,9 +1262,6 @@ ol li {
     }
 }
 @media (min-width: 900px) and (max-width: 1200px) {
-    .seed-container {
-        display: none;
-    }
     #home-card {
         display: none;
     }
@@ -1837,52 +1834,87 @@ summary {
 
 
 .seed-container {
-    overflow: hidden;
+    align-items: center;
+    display: inline-flex;
+    gap: 6px;
     margin-left: 30px;
     color: var(--text-primary);
 }
-.seed-container .seed-text {
-    margin-right: 5px;
-
+.seed-container .seed-text,
+.seed-container .seed-changer {
+    color: var(--text-primary);
+    cursor: text;
+    letter-spacing: 0.04em;
 }
-.seed-container .changer-text {
-    margin-left: 5px;
+.seed-container .seed-changer {
+    cursor: default;
 }
 .expandable-form {
     display: inline-flex;
     align-items: center;
-    overflow: hidden;
-    max-width: 0; 
+    gap: 4px;
+    max-width: 0;
     opacity: 0;
-    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1); 
+    overflow: hidden;
+    transition: max-width 0.6s cubic-bezier(0.4, 0, 0.2, 1),
+        opacity 0.35s ease, margin 0.6s ease;
 }
 .seed-container:hover .expandable-form,
 .seed-container:focus-within .expandable-form {
-    max-width: 100px;
+    max-width: 112px;
     opacity: 1;
-    margin: 0 10px;
+    margin: 0 4px;
 }
 .expandable-form input {
-        background: rgba(var(--shadow-rgb, 0, 0, 0), 0.3);
-        border: none;
-        color: var(--text-secondary);
-        border-radius: 4px;
-        width: 60px;
-        outline: none;
-        font-size: 10px;
-        height: 20px;
+    background: var(--bg-surface-elevated);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    color: var(--text-primary);
+    font: inherit;
+    font-size: 0.75rem;
+    height: 26px;
+    line-height: 26px;
+    outline: none;
+    padding: 0 7px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    width: 76px;
+    box-sizing: border-box;
+}
+.expandable-form input::-webkit-inner-spin-button,
+.expandable-form input::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+.expandable-form input[type="number"] {
+    -moz-appearance: textfield;
 }
 .seed-input::placeholder {
-    font-size: 10px;
+    color: var(--text-secondary);
+    opacity: 0.9;
 }
 .expandable-form button {
-        background: rgba(var(--shadow-rgb, 0, 0, 0), 0.3);
-        border: none;
-        margin-left: 5px;
-        border-radius: 10px;
-        cursor: pointer;
-        height: 20px;
-        width: 20px;
+    align-items: center;
+    background: var(--bg-surface-elevated);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    color: var(--text-primary);
+    cursor: pointer;
+    display: inline-flex;
+    height: 26px;
+    justify-content: center;
+    padding: 0;
+    transition: background 0.2s, border-color 0.2s, color 0.2s;
+    width: 28px;
+}
+.expandable-form input:focus,
+.expandable-form button:focus-visible,
+.expandable-form button:hover {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 2px rgba(126, 184, 154, 0.2);
+    color: var(--accent-hover);
+}
+.expandable-form button:hover {
+    background: var(--bg-surface);
 }
 
 .mermaid {

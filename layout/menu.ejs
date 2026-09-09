@@ -10,16 +10,16 @@
         </a>
         <% }); %>
         <% if (theme.stellars.enable && theme.stellars.seedChanger.enable) { %>
-        <span class="seed-container">
-            <span class="seed-text">SEED</span>
+        <form class="seed-container" onsubmit="updateGalaxy(event)">
+            <label class="seed-text" for="desktop-seed-input">SEED</label>
             <span class="expandable-form">
-                <input class="seed-input" type="number" inputmode="numeric" step="1">
-                <button type="button" onclick="updateGalaxy(this)" aria-label="Change galaxy seed" title="Change galaxy seed">
+                <input id="desktop-seed-input" class="seed-input" type="number" inputmode="numeric" step="1" aria-label="Galaxy seed">
+                <button type="submit" aria-label="Apply galaxy seed" title="Apply galaxy seed">
                     <i class="fa-solid fa-rotate" aria-hidden="true"></i>
                 </button>
             </span>
             <span class="seed-changer">CHANGER</span>
-        </span>
+        </form>
         <% } %>
     </nav>
     <nav id="mobile-menu">
@@ -40,16 +40,16 @@
                 </a>
                 <% }); %>
                 <% if (theme.stellars.enable && theme.stellars.seedChanger.enable) { %>
-                <span class="seed-container">
-                    <span class="seed-text">SEED</span>
+                <form class="seed-container" onsubmit="updateGalaxy(event)">
+                    <label class="seed-text" for="mobile-seed-input">SEED</label>
                     <span class="expandable-form">
-                        <input class="seed-input" type="number" inputmode="numeric" step="1">
-                        <button type="button" onclick="updateGalaxy(this)" aria-label="Change galaxy seed" title="Change galaxy seed">
+                        <input id="mobile-seed-input" class="seed-input" type="number" inputmode="numeric" step="1" aria-label="Galaxy seed">
+                        <button type="submit" aria-label="Apply galaxy seed" title="Apply galaxy seed">
                             <i class="fa-solid fa-rotate" aria-hidden="true"></i>
                         </button>
                     </span>
                     <span class="seed-changer">CHANGER</span>
-                </span>
+                </form>
                 <% } %>
             </div>
         </transition>
