@@ -1287,7 +1287,6 @@ ol li {
     }
     #home-head #home-info .info {
         align-items: center;
-        background: var(--home-info-bg);
         display: flex;
         height: 350px;
         justify-content: center;
