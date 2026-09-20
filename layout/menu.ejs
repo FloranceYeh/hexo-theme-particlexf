@@ -24,7 +24,7 @@
     </nav>
     <nav id="mobile-menu">
         <div class="title" @click="showMenuItems = !showMenuItems">
-            <i class="fa-solid fa-bars fa-fw"></i>
+            <i class="fa-solid fa-bars fa-fw" :class="{ 'is-open': showMenuItems }"></i>
             <span>&emsp;<%= config.title.toUpperCase() %></span>
         </div>
         <transition name="slide">
