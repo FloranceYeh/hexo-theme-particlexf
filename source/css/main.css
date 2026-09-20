@@ -1242,7 +1242,22 @@ ol li {
         max-width: 1200px;
     }
     #menu #desktop-menu {
-        display: block;
+        align-items: center;
+        box-sizing: border-box;
+        display: flex;
+        flex-wrap: nowrap;
+        gap: clamp(10px, 2.4vw, 36px);
+        padding-left: clamp(16px, 4vw, 60px);
+        padding-right: 60px;
+        white-space: nowrap;
+    }
+    #menu #desktop-menu .title,
+    #menu #desktop-menu a {
+        margin-left: 0;
+        margin-right: 0;
+    }
+    #menu #desktop-menu .seed-container {
+        margin-left: 0;
     }
     #menu #mobile-menu {
         display: none;
@@ -1835,9 +1850,13 @@ summary {
 
 .seed-container {
     align-items: center;
+    background: transparent;
+    border: 0;
     display: inline-flex;
     gap: 6px;
+    line-height: inherit;
     margin-left: 30px;
+    padding: 0;
     color: var(--text-primary);
 }
 .seed-container .seed-text,
@@ -1861,7 +1880,7 @@ summary {
 }
 .seed-container:hover .expandable-form,
 .seed-container:focus-within .expandable-form {
-    max-width: 112px;
+    max-width: 108px;
     opacity: 1;
     margin: 0 4px;
 }
