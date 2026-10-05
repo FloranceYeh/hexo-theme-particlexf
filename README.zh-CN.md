@@ -174,6 +174,9 @@ categories:
   - Tutorial
 description: |
   首页显示的摘要，支持 **Markdown**。
+card_style: "border-color: #7eb89a;"
+card_title_style: "letter-spacing: 0.08em;"
+card_description_style: "font-size: 0.95rem;"
 pinned: 10
 toc: true
 comments: true
@@ -185,6 +188,9 @@ comments: true
 | --- | --- |
 | `pinned` | 数值。数值越大，文章在首页越靠前；数值相同时按日期倒序。建议使用正数。只要定义了该字段，首页也会显示置顶标记。 |
 | `description` | 首页文章摘要，支持 Markdown。未设置时依次回退到 `<!-- more -->` 摘要和完整正文。 |
+| `card_style` | 应用于该文章首页卡片的行内 CSS。 |
+| `card_title_style` | 应用于首页卡片标题的行内 CSS，也支持 `title_style`。 |
+| `card_description_style` | 应用于首页卡片描述的行内 CSS，也支持 `description_style`。|
 | `toc` | 设为 `false` 可关闭当前文章的 TOC；其他情况下，有标题的文章会自动生成 TOC。 |
 | `comments` | 设为 `true` 才会在文章或友链页渲染全局已启用的评论系统；只开启全局评论配置并不会自动显示评论。 |
 | `secret` | 当 `crypto.enable` 同时为 `true` 时，作为浏览器端 AES 解密密码；若全局加密未开启，文章会正常明文渲染。 |

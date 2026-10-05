@@ -30,10 +30,15 @@
     });
     posts = posts.slice(current, config.index_generator.per_page + current);
 %>
-<% posts.forEach((post) => { %>
-<div class="post">
+<% posts.forEach((post) => {
+    const cardStyle = post.card_style;
+    const titleStyle = post.card_title_style ?? post.title_style;
+    const descriptionStyle = post.card_description_style ?? post.description_style;
+    const styleValue = (value) => typeof value === "string" ? value.replace(/[\u0000-\u001f\u007f]/g, " ").trim() : "";
+%>
+<div class="post"<% if (styleValue(cardStyle)) { %> style="<%= styleValue(cardStyle) %>"<% } %>>
     <a href="<%- url_for(post.path) %>">
-        <h2 class="post-title"><%= post.title %></h2>
+        <h2 class="post-title"<% if (styleValue(titleStyle)) { %> style="<%= styleValue(titleStyle) %>"<% } %>><%= post.title %></h2>
     </a>
     <div class="category-and-date">
         <% if (post.categories.data.length !== 0) { %>
@@ -63,7 +68,7 @@
         </span>
         <% } %>
     </div>
-    <div class="description">
+    <div class="description"<% if (styleValue(descriptionStyle)) { %> style="<%= styleValue(descriptionStyle) %>"<% } %>>
         <div class="content" v-pre>
             <% if (typeof post.description !== "undefined") { %>
             <%- markdown(post.description) %>
