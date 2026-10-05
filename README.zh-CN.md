@@ -177,6 +177,7 @@ description: |
 card_style: "border-color: #7eb89a;"
 card_title_style: "letter-spacing: 0.08em;"
 card_description_style: "font-size: 0.95rem;"
+card_button_style: "background: #345f48; border-radius: 4px;"
 pinned: 10
 toc: true
 comments: true
@@ -191,6 +192,7 @@ comments: true
 | `card_style` | 应用于该文章首页卡片的行内 CSS。 |
 | `card_title_style` | 应用于首页卡片标题的行内 CSS，也支持 `title_style`。 |
 | `card_description_style` | 应用于首页卡片描述的行内 CSS，也支持 `description_style`。|
+| `card_button_style` | 应用于首页卡片“阅读全文”按钮的行内 CSS，也支持 `button_style` 和 `go_post_style`。 |
 | `toc` | 设为 `false` 可关闭当前文章的 TOC；其他情况下，有标题的文章会自动生成 TOC。 |
 | `comments` | 设为 `true` 才会在文章或友链页渲染全局已启用的评论系统；只开启全局评论配置并不会自动显示评论。 |
 | `secret` | 当 `crypto.enable` 同时为 `true` 时，作为浏览器端 AES 解密密码；若全局加密未开启，文章会正常明文渲染。 |

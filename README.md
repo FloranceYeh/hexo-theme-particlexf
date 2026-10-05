@@ -175,6 +175,7 @@ description: |
 card_style: "border-color: #7eb89a;"
 card_title_style: "letter-spacing: 0.08em;"
 card_description_style: "font-size: 0.95rem;"
+card_button_style: "background: #345f48; border-radius: 4px;"
 pinned: 10
 toc: true
 comments: true
@@ -189,6 +190,7 @@ comments: true
 | `card_style` | Inline CSS applied to this post's home-page card. `cardStyle` is also accepted. |
 | `card_title_style` | Inline CSS applied to the home-page card title. `title_style` is also accepted. |
 | `card_description_style` | Inline CSS applied to the home-page card description. `description_style` is also accepted. |
+| `card_button_style` | Inline CSS applied to the home-page `阅读全文` button. `button_style` and `go_post_style` are also accepted. |
 | `toc` | Set to `false` to hide the article TOC. Otherwise a TOC is generated when the rendered article has headings. |
 | `comments` | Set to `true` to render the globally enabled comment adapter on a post or the links page. Global adapter configuration alone does not display comments. |
 | `secret` | Password used for client-side AES encryption when `crypto.enable` is also `true`. If global encryption is disabled, the post is rendered normally. |

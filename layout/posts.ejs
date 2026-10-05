@@ -34,6 +34,7 @@
     const cardStyle = post.card_style;
     const titleStyle = post.card_title_style ?? post.title_style;
     const descriptionStyle = post.card_description_style ?? post.description_style;
+    const buttonStyle = post.card_button_style ?? post.button_style ?? post.go_post_style;
     const styleValue = (value) => typeof value === "string" ? value.replace(/[\u0000-\u001f\u007f]/g, " ").trim() : "";
 %>
 <div class="post"<% if (styleValue(cardStyle)) { %> style="<%= styleValue(cardStyle) %>"<% } %>>
@@ -97,6 +98,6 @@
         </span>
         <% }); %>
     </div>
-    <a href="<%- url_for(post.path) %>" class="go-post">阅读全文</a>
+    <a href="<%- url_for(post.path) %>" class="go-post"<% if (styleValue(buttonStyle)) { %> style="<%= styleValue(buttonStyle) %>"<% } %>>阅读全文</a>
 </div>
 <% }); %>
