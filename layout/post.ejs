@@ -53,7 +53,7 @@
                 :class="['input', cryptoStatus]"
                 :disabled="cryptoStatus === 'success'"
                 ref="crypto"
-                placeholder="文章被加密，请输入密码"
+                placeholder="<%= __('encrypted_placeholder') %>"
                 data-encrypted="<%- CryptoJS.AES.encrypt(page.content, page.secret).toString() %>"
                 data-shasum="<%- CryptoJS.SHA256(page.content).toString() %>"
                 v-model="crypto"

@@ -12,13 +12,23 @@
 "use strict";
 
 const TYPES = {
-    note: { icon: "fa-solid fa-pen", title: "说明" },
-    info: { icon: "fa-solid fa-circle-info", title: "信息" },
-    tip: { icon: "fa-solid fa-lightbulb", title: "提示" },
-    success: { icon: "fa-solid fa-circle-check", title: "成功" },
-    warning: { icon: "fa-solid fa-triangle-exclamation", title: "警告" },
-    danger: { icon: "fa-solid fa-circle-xmark", title: "危险" },
-    quote: { icon: "fa-solid fa-quote-left", title: "引用" },
+    note: { icon: "fa-solid fa-pen", title: "Note" },
+    info: { icon: "fa-solid fa-circle-info", title: "Info" },
+    tip: { icon: "fa-solid fa-lightbulb", title: "Tip" },
+    success: { icon: "fa-solid fa-circle-check", title: "Success" },
+    warning: { icon: "fa-solid fa-triangle-exclamation", title: "Warning" },
+    danger: { icon: "fa-solid fa-circle-xmark", title: "Danger" },
+    quote: { icon: "fa-solid fa-quote-left", title: "Quote" },
+};
+
+const ZH_TYPES = {
+    note: "说明",
+    info: "信息",
+    tip: "提示",
+    success: "成功",
+    warning: "警告",
+    danger: "危险",
+    quote: "引用",
 };
 
 function escapeHtml(str) {
@@ -49,7 +59,11 @@ hexo.extend.tag.register(
         });
 
         const meta = TYPES[type] || TYPES.note;
-        const title = titleParts.length ? titleParts.join(" ") : meta.title;
+        const language = String(hexo.config.language || "en").toLowerCase();
+        const defaultTitle = language === "zh-cn" || language === "zh_cn" || language === "zh"
+            ? ZH_TYPES[type]
+            : meta.title;
+        const title = titleParts.length ? titleParts.join(" ") : defaultTitle;
         const rendered = hexo.render.renderSync({ text: content, engine: "markdown" });
 
         const iconHtml = showIcon

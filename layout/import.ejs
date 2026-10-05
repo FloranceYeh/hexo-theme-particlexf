@@ -7,7 +7,15 @@
     rel="stylesheet"
     href="https://fonts.googleapis.cn/css2?family=Fira+Code:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;600;700&display=swap"
 />
-<script> const mixins = {}; </script>
+<script>
+    const mixins = {};
+    window.__PARTICLEX_I18N__ = {
+        codeExpand: <%- JSON.stringify(__('code_expand')) %>,
+        codeCollapse: <%- JSON.stringify(__('code_collapse')) %>,
+        copyCode: <%- JSON.stringify(__('copy_code')) %>,
+        copiedCode: <%- JSON.stringify(__('copied_code')) %>
+    };
+</script>
 <% if (theme.polyfill.enable) { %>
 <script src="https://polyfill.alicdn.com/v3/polyfill.min.js?features=<%- theme.polyfill.features %>"></script>
 <% } %>

@@ -98,6 +98,6 @@
         </span>
         <% }); %>
     </div>
-    <a href="<%- url_for(post.path) %>" class="go-post"<% if (styleValue(buttonStyle)) { %> style="<%= styleValue(buttonStyle) %>"<% } %>>阅读全文</a>
+    <a href="<%- url_for(post.path) %>" class="go-post"<% if (styleValue(buttonStyle)) { %> style="<%= styleValue(buttonStyle) %>"<% } %>><%= __('read_more') %></a>
 </div>
 <% }); %>

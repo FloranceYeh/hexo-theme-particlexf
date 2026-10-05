@@ -14,7 +14,7 @@
         </div>
         <% if (theme.footer.ICP.enable) { %>
         <div>
-            备案号：
+            <%= __('icp') %>
             <% if (theme.footer.ICP.link) { %>
             <a href="<%- url_for(theme.footer.ICP.link) %>"><%= theme.footer.ICP.code %></a>
             <% } else { %>

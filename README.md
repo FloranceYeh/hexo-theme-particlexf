@@ -79,6 +79,16 @@ After changes, run `hexo clean`.
 
 The defaults live in the theme's `_config.yml`. For a cloned theme either edit that file, or preferably put overrides in the site root as `_config.particlexf.yml`. Keeping overrides outside `themes/particlexf` makes theme upgrades and submodule use easier. Run `hexo clean` after changing configuration.
 
+### Internationalization
+
+Theme interface text uses Hexo's i18n system. Set `language` in the site's root `_config.yml` to `en` or `zh-CN`:
+
+```yaml
+language: zh-CN
+```
+
+English is the fallback language (`languages/default.yml`); Chinese translations are in `languages/zh-CN.yml`.
+
 Common options:
 
 ```yaml

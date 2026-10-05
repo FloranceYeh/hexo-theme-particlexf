@@ -52,6 +52,10 @@ mixins.highlight = {
         },
         highlight() {
             const opts = this.getHighlightOptions();
+            const i18n = window.__PARTICLEX_I18N__ || {};
+            const expandLabel = i18n.codeExpand || "Expand all (%s lines)";
+            const collapseLabel = i18n.codeCollapse || "Collapse";
+            const copyLabel = i18n.copyCode || "Copy code";
             const codes = document.querySelectorAll("pre");
             for (const i of codes) {
                 const code = i.textContent;
@@ -79,11 +83,11 @@ mixins.highlight = {
                             shouldCollapse
                                 ? `<button type="button" class="code-fold" aria-expanded="false">
                             <i class="fa-solid fa-chevron-down fa-fw" aria-hidden="true"></i>
-                            <span class="code-fold-label">展开全部 (${lineCount} 行)</span>
+                            <span class="code-fold-label">${expandLabel.replace("%s", lineCount)}</span>
                         </button>`
                                 : ""
                         }
-                        <div class="copycode" title="复制代码">
+                        <div class="copycode" title="${copyLabel}">
                             <i class="fa-solid fa-copy fa-fw"></i>
                             <i class="fa-solid fa-check fa-fw"></i>
                         </div>
@@ -107,8 +111,8 @@ mixins.highlight = {
                         i.classList.toggle("is-collapsed", !expanded);
                         foldBtn.setAttribute("aria-expanded", expanded ? "true" : "false");
                         foldLabel.textContent = expanded
-                            ? "收起"
-                            : `展开全部 (${lineCount} 行)`;
+                            ? collapseLabel
+                            : expandLabel.replace("%s", lineCount);
                         const icon = foldBtn.querySelector("i");
                         if (icon) {
                             icon.classList.toggle("fa-chevron-down", !expanded);

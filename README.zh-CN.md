@@ -81,6 +81,16 @@ archive_generator:
 
 主题默认配置位于 [_config.yml](_config.yml)。直接克隆主题时可以修改该文件，但更推荐在站点根目录使用 `_config.particlexf.yml` 覆盖配置，这样更新主题或使用 Git 子模块时不会混入个人配置。修改配置后请执行一次 `hexo clean`。
 
+### 国际化
+
+主题界面文案使用 Hexo 原生 i18n。可在站点根目录 `_config.yml` 中设置 `language`，目前支持 `en` 和 `zh-CN`：
+
+```yaml
+language: zh-CN
+```
+
+英文文案位于 `languages/default.yml`，中文翻译位于 `languages/zh-CN.yml`。
+
 常用项如下：
 
 ```yaml
