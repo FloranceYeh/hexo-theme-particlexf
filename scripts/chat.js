@@ -1,30 +1,29 @@
 "use strict";
 
 /**
- * Chat transcript tag.
+ * Chat transcript tag (ParticleXF theme).
  *
  * Usage:
- *   {% chat wechat title="项目群" %}
- *   other|10:24|今天的发布准备好了吗？
- *   me|10:25|已经准备好了，稍后发你链接。
+ *   {% chat wechat title="Project group" logo="/images/logo.png" expanded=false %}
+ *   A:John,/images/avatar.jpg
+ *   A|10:24|Hello
+ *   me|10:25|[image:/images/photo.jpg Photo]
  *   {% endchat %}
  *
- * Speaker definitions can be added before messages:
- *   A:John,https://example.com/john.jpg
- *   A|10:24|Hello
- * Each message line is role|time|message. The time column is optional.
- * `me`, `self`, `我` and `right` render on the right; all other roles
- * render on the left. A line can also use `me|message`.
+ * Platforms: wechat, qq, telegram. Messages use role|time|message;
+ * time is optional. Define a speaker with ID:name,avatar URL.
+ * me, self, 我, and right render on the right. Use collapsed or
+ * expanded=false to start with the transcript closed.
  */
 
 const ID_COUNTER = { value: 0 };
 const PLATFORMS = {
-    wechat: { label: "微信", icon: "weixin", className: "wechat", title: "微信聊天" },
-    weixin: { label: "微信", icon: "weixin", className: "wechat", title: "微信聊天" },
-    wx: { label: "微信", icon: "weixin", className: "wechat", title: "微信聊天" },
-    qq: { label: "QQ", icon: "qq", className: "qq", title: "QQ聊天" },
-    telegram: { label: "Telegram", icon: "telegram", className: "telegram", title: "Telegram聊天" },
-    tg: { label: "Telegram", icon: "telegram", className: "telegram", title: "Telegram聊天" },
+    wechat: { icon: "weixin", className: "wechat", titleKey: "chat_wechat_title" },
+    weixin: { icon: "weixin", className: "wechat", titleKey: "chat_wechat_title" },
+    wx: { icon: "weixin", className: "wechat", titleKey: "chat_wechat_title" },
+    qq: { icon: "qq", className: "qq", titleKey: "chat_qq_title" },
+    telegram: { icon: "telegram", className: "telegram", titleKey: "chat_telegram_title" },
+    tg: { icon: "telegram", className: "telegram", titleKey: "chat_telegram_title" },
 };
 
 function escapeHtml(value) {
@@ -37,7 +36,7 @@ function escapeHtml(value) {
 }
 
 function parseOptions(args, platform) {
-    let title = platform.title;
+    let title = hexo.__(platform.titleKey) || platform.titleKey;
     let subtitle = "";
     let logo = "";
     let expanded = true;
@@ -85,7 +84,7 @@ function parseSpeaker(line) {
     return { id, name, avatar };
 }
 
-function renderMessage(value) {
+function renderMessage(value, imageAlt) {
     const pattern = /\[(?:img|image):\s*((?:https?:\/\/|\/)[^\]\s]+)(?:\s+([^\]]+))?\]/gi;
     let html = "";
     let cursor = 0;
@@ -93,7 +92,7 @@ function renderMessage(value) {
     const text = String(value).replace(/!\[([^\]]*)\]\(((?:https?:\/\/|\/)[^)]+)\)/gi, "[image:$2 $1]");
     while ((match = pattern.exec(text))) {
         html += escapeHtml(text.slice(cursor, match.index));
-        const alt = match[2] ? escapeHtml(match[2].trim()) : "聊天图片";
+        const alt = match[2] ? escapeHtml(match[2].trim()) : escapeHtml(imageAlt);
         html += `<img class="chat-image" src="${escapeHtml(match[1])}" alt="${alt}" loading="lazy">`;
         cursor = match.index + match[0].length;
     }
@@ -121,7 +120,7 @@ hexo.extend.tag.register("chat", function (args, content) {
             ? `<img src="${escapeHtml(speaker.avatar)}" alt="" loading="lazy">`
             : initial;
         const time = item.time ? `<time>${escapeHtml(item.time)}</time>` : "";
-        const body = renderMessage(item.message);
+        const body = renderMessage(item.message, hexo.__("chat_image_alt") || "Chat image");
         const side = item.right ? " chat-message-right" : "";
         return `<div class="chat-message${side}">` +
             `<div class="chat-avatar" aria-hidden="true">${avatar}</div>` +
@@ -141,7 +140,7 @@ hexo.extend.tag.register("chat", function (args, content) {
         `    <span class="chat-header-copy"><strong>${escapeHtml(options.title)}</strong>${options.subtitle ? `<small>${escapeHtml(options.subtitle)}</small>` : ""}</span>`,
         `    <span class="chat-status" aria-hidden="true"></span>`,
         `  </button>`,
-        `  <div class="chat-messages" id="${id}-messages">${messages || `<p class="chat-empty">暂无聊天记录</p>`}</div>`,
+        `  <div class="chat-messages" id="${id}-messages">${messages || `<p class="chat-empty">${escapeHtml(hexo.__("chat_empty") || "No chat messages")}</p>`}</div>`,
         `</section>`,
     ].join("\n");
 }, { ends: true });

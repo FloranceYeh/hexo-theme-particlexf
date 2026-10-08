@@ -15,3 +15,16 @@ code_expand: "展开全部 (%s 行)"
 code_collapse: 收起
 copy_code: 复制代码
 copied_code: 已复制
+note_note: 说明
+note_info: 信息
+note_tip: 提示
+note_success: 成功
+note_warning: 警告
+note_danger: 危险
+note_quote: 引用
+tabs_default_label: "标签 %s"
+chat_wechat_title: 微信聊天
+chat_qq_title: QQ 聊天
+chat_telegram_title: Telegram 聊天
+chat_empty: 暂无聊天记录
+chat_image_alt: 聊天图片

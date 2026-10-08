@@ -15,3 +15,16 @@ code_expand: "Expand all (%s lines)"
 code_collapse: Collapse
 copy_code: Copy code
 copied_code: Copied
+note_note: Note
+note_info: Info
+note_tip: Tip
+note_success: Success
+note_warning: Warning
+note_danger: Danger
+note_quote: Quote
+tabs_default_label: "Tab %s"
+chat_wechat_title: WeChat chat
+chat_qq_title: QQ chat
+chat_telegram_title: Telegram chat
+chat_empty: No chat messages
+chat_image_alt: Chat image

@@ -1,15 +1,15 @@
+"use strict";
+
 /**
- * Note / callout tag (ParticleXF theme).
+ * Note callout tag (ParticleXF theme).
  *
  * Usage:
- *   {% note %}Default note{% endnote %}
  *   {% note tip %}Tip body{% endnote %}
- *   {% note warning 注意 %}With custom title{% endnote %}
- *   {% note danger no-icon %}No icon{% endnote %}
+ *   {% note warning Custom title %}Warning body{% endnote %}
  *
- * Types: note | info | tip | success | warning | danger | quote
+ * Types: note, info, tip, success, warning, danger, quote.
+ * Add no-icon to hide the icon; omit a title to use the translated default.
  */
-"use strict";
 
 const TYPES = {
     note: { icon: "fa-solid fa-pen", title: "Note" },
@@ -19,16 +19,6 @@ const TYPES = {
     warning: { icon: "fa-solid fa-triangle-exclamation", title: "Warning" },
     danger: { icon: "fa-solid fa-circle-xmark", title: "Danger" },
     quote: { icon: "fa-solid fa-quote-left", title: "Quote" },
-};
-
-const ZH_TYPES = {
-    note: "说明",
-    info: "信息",
-    tip: "提示",
-    success: "成功",
-    warning: "警告",
-    danger: "危险",
-    quote: "引用",
 };
 
 function escapeHtml(str) {
@@ -59,9 +49,9 @@ hexo.extend.tag.register(
         });
 
         const meta = TYPES[type] || TYPES.note;
-        const language = String(hexo.config.language || "en").toLowerCase();
-        const defaultTitle = language === "zh-cn" || language === "zh_cn" || language === "zh"
-            ? ZH_TYPES[type]
+        const translatedTitle = hexo.__(`note_${type}`);
+        const defaultTitle = translatedTitle && translatedTitle !== `note_${type}`
+            ? translatedTitle
             : meta.title;
         const title = titleParts.length ? titleParts.join(" ") : defaultTitle;
         const rendered = hexo.render.renderSync({ text: content, engine: "markdown" });
