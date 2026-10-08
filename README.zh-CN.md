@@ -352,6 +352,47 @@ Tab 3 的内容。
 
 自动识别 YouTube、Bilibili、Youku，其他 URL 直接以 iframe 嵌入。
 
+## Chat 标签
+
+使用 `chat` 标签展示模拟聊天记录，平台可以选择 `wechat`、`qq` 或 `telegram`。每行格式为 `角色|时间|消息`，时间可以省略；`me`、`self`、`我` 和 `right` 会显示在右侧。
+
+```markdown
+{% chat wechat title="项目群" subtitle="3 位成员" %}
+other|10:24|今天的发布准备好了吗？
+me|10:25|已经准备好了，稍后发你链接。
+other|10:26|收到，谢谢！
+{% endchat %}
+```
+
+可以先注册发言人，之后用标识快速引用并自动显示姓名和头像：
+
+```markdown
+{% chat telegram title="项目讨论" %}
+A:John,/images/avatar.jpg
+B:Jane,/images/ParticleXF.png
+A|10:24|The build is ready.
+B|10:25|Great, thanks!
+{% endchat %}
+```
+
+可以自定义顶部 Logo，并设置聊天框默认收起：
+
+```markdown
+{% chat telegram title="项目讨论" logo="/images/ParticleXF.png" expanded=false %}
+A|10:24|The build is ready.
+{% endchat %}
+```
+
+也可以直接使用 `collapsed` 代替 `expanded=false`。
+
+消息中使用 `[image:图片地址]` 发送图片，也可以追加图片说明：
+
+```markdown
+A|10:30|看看这张图：[image:/images/ParticleXF.png 发布截图]
+```
+
+QQ 和 Telegram 只需替换第一行的平台名称。
+
 ## 目录结构
 
 ```text

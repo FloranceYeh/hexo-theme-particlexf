@@ -352,6 +352,45 @@ Embed external videos:
 
 Automatically detects YouTube, Bilibili, and Youku. Falls back to a direct iframe embed for other URLs.
 
+## Chat
+
+Use the `chat` tag to render a simulated conversation. Choose `wechat`, `qq`, or `telegram` as the platform. Each message uses `role|time|message`; the time is optional. `me`, `self`, `我`, and `right` are displayed on the right.
+
+```markdown
+{% chat wechat title="Project group" subtitle="3 members" %}
+other|10:24|Is the release ready?
+me|10:25|Yes, I will send you the link shortly.
+{% endchat %}
+```
+
+Register speakers once to reuse their identifier and avatar:
+
+```markdown
+{% chat telegram title="Project discussion" %}
+A:John,/images/avatar.jpg
+B:Jane,/images/ParticleXF.png
+A|10:24|The build is ready.
+B|10:25|Great, thanks!
+{% endchat %}
+```
+
+Use `[image:image-url optional caption]` or standard Markdown image syntax for image messages:
+
+```markdown
+A|10:30|Here is the screenshot: [image:/images/ParticleXF.png Screenshot]
+A|10:31|![Screenshot](/images/ParticleXF.png)
+```
+
+The header can use a custom logo and start collapsed:
+
+```markdown
+{% chat telegram title="Project discussion" logo="/images/ParticleXF.png" expanded=false %}
+A|10:24|The build is ready.
+{% endchat %}
+```
+
+Use `collapsed` as a shorthand for `expanded=false`. The header remains clickable so readers can expand or collapse the transcript.
+
 ## Layout
 
 ```

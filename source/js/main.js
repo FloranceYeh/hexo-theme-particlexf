@@ -11,7 +11,10 @@ const app = Vue.createApp({
         };
     },
     created() {
-        window.addEventListener("load", () => {
+        // window.addEventListener("load", () => {
+        //     this.loading = false;
+        // });
+        document.addEventListener("DOMContentLoaded", () => {
             this.loading = false;
         });
     },
@@ -43,6 +46,14 @@ const app = Vue.createApp({
 app.mount("#layout");
 
 document.addEventListener("click", function (e) {
+    var chatHeader = e.target.closest(".chat-header");
+    if (chatHeader) {
+        var chat = chatHeader.closest(".chat-widget");
+        var expanded = chatHeader.getAttribute("aria-expanded") !== "false";
+        chatHeader.setAttribute("aria-expanded", String(!expanded));
+        if (chat) chat.classList.toggle("chat-collapsed", expanded);
+        return;
+    }
     var btn = e.target.closest(".tabs-tab");
     if (!btn) return;
     var id = btn.getAttribute("data-tabs-id");
