@@ -26,6 +26,15 @@ const PLATFORMS = {
     tg: { icon: "telegram", className: "telegram", titleKey: "chat_telegram_title" },
 };
 
+function translate(key, fallback) {
+    const language = String(hexo.config.language || "default");
+    const translateFn = hexo.theme && hexo.theme.i18n
+        ? hexo.theme.i18n.__([language, "default"])
+        : null;
+    const value = translateFn ? translateFn(key) : key;
+    return value === key ? fallback : value;
+}
+
 function escapeHtml(value) {
     return String(value)
         .replace(/&/g, "&amp;")
@@ -36,7 +45,7 @@ function escapeHtml(value) {
 }
 
 function parseOptions(args, platform) {
-    let title = hexo.__(platform.titleKey) || platform.titleKey;
+    let title = translate(platform.titleKey, platform.titleKey);
     let subtitle = "";
     let logo = "";
     let expanded = true;
@@ -120,7 +129,7 @@ hexo.extend.tag.register("chat", function (args, content) {
             ? `<img src="${escapeHtml(speaker.avatar)}" alt="" loading="lazy">`
             : initial;
         const time = item.time ? `<time>${escapeHtml(item.time)}</time>` : "";
-        const body = renderMessage(item.message, hexo.__("chat_image_alt") || "Chat image");
+        const body = renderMessage(item.message, translate("chat_image_alt", "Chat image"));
         const side = item.right ? " chat-message-right" : "";
         return `<div class="chat-message${side}">` +
             `<div class="chat-avatar" aria-hidden="true">${avatar}</div>` +
@@ -140,7 +149,7 @@ hexo.extend.tag.register("chat", function (args, content) {
         `    <span class="chat-header-copy"><strong>${escapeHtml(options.title)}</strong>${options.subtitle ? `<small>${escapeHtml(options.subtitle)}</small>` : ""}</span>`,
         `    <span class="chat-status" aria-hidden="true"></span>`,
         `  </button>`,
-        `  <div class="chat-messages" id="${id}-messages">${messages || `<p class="chat-empty">${escapeHtml(hexo.__("chat_empty") || "No chat messages")}</p>`}</div>`,
+        `  <div class="chat-messages" id="${id}-messages">${messages || `<p class="chat-empty">${escapeHtml(translate("chat_empty", "No chat messages"))}</p>`}</div>`,
         `</section>`,
     ].join("\n");
 }, { ends: true });

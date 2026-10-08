@@ -15,6 +15,15 @@
  */
 const ID_COUNTER = { value: 0 };
 
+function translate(key, fallback, value) {
+    const language = String(hexo.config.language || "default");
+    const translateFn = hexo.theme && hexo.theme.i18n
+        ? hexo.theme.i18n.__([language, "default"])
+        : null;
+    const translated = translateFn ? translateFn(key, value) : key;
+    return translated === key ? fallback : translated;
+}
+
 hexo.extend.tag.register("tabs", function (args, content) {
     const blocks = content.split(/\n?<!--\s*tabs\s*-->\n?/);
     const id = `tabs-${++ID_COUNTER.value}`;
@@ -41,8 +50,7 @@ hexo.extend.tag.register("tabs", function (args, content) {
 
     if (!labels.length) {
         blocks.forEach((_, i) => {
-            const translated = hexo.__("tabs_default_label", i + 1);
-            labels.push({ text: translated || `Tab ${i + 1}`, icon: null });
+            labels.push({ text: translate("tabs_default_label", `Tab ${i + 1}`, i + 1), icon: null });
         });
     }
 

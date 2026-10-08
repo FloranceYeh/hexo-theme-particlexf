@@ -21,6 +21,15 @@ const TYPES = {
     quote: { icon: "fa-solid fa-quote-left", title: "Quote" },
 };
 
+function translate(key, fallback) {
+    const language = String(hexo.config.language || "default");
+    const translateFn = hexo.theme && hexo.theme.i18n
+        ? hexo.theme.i18n.__([language, "default"])
+        : null;
+    const value = translateFn ? translateFn(key) : key;
+    return value === key ? fallback : value;
+}
+
 function escapeHtml(str) {
     return String(str)
         .replace(/&/g, "&amp;")
@@ -49,10 +58,7 @@ hexo.extend.tag.register(
         });
 
         const meta = TYPES[type] || TYPES.note;
-        const translatedTitle = hexo.__(`note_${type}`);
-        const defaultTitle = translatedTitle && translatedTitle !== `note_${type}`
-            ? translatedTitle
-            : meta.title;
+        const defaultTitle = translate(`note_${type}`, meta.title);
         const title = titleParts.length ? titleParts.join(" ") : defaultTitle;
         const rendered = hexo.render.renderSync({ text: content, engine: "markdown" });
 
